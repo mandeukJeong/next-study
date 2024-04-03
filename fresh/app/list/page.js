@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 export default function List() {
   let 상품 = ['Tomatoes', 'Pasta', 'Coconut'];
-  let [count, setCount] = useState(0);
+  let [count, setCount] = useState([0, 0, 0]);
 
   return (
     <div>
@@ -12,15 +12,29 @@ export default function List() {
         <div className="food" key={i}>
           <img src={`/food${i}.png`} className="food-img" />
           <h4>{item} $40</h4>
-          <span> {count} </span>
+          <span> {count[i]} </span>
           <button
             onClick={() => {
-              setCount(count + 1);
+              setCount((prevState) => {
+                const copy = [...prevState];
+                copy[i]++;
+                return copy;
+              });
             }}
           >
             +
           </button>
-          <button onClick={() => setCount(count - 1)}>-</button>
+          <button
+            onClick={() => {
+              setCount((prevState) => {
+                const copy = [...prevState];
+                copy[i]--;
+                return copy;
+              });
+            }}
+          >
+            -
+          </button>
         </div>
       ))}
     </div>
