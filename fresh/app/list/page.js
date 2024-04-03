@@ -20,6 +20,7 @@ export default function List() {
           >
             +
           </button>
+          <button onClick={() => setCount(count - 1)}>-</button>
         </div>
       ))}
     </div>
