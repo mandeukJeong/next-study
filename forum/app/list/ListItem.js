@@ -17,9 +17,13 @@ export default function ListItem({ result }) {
                 body: JSON.stringify({
                   _id: item._id,
                 }),
-              }).then(() => {
-                console.log(123123);
-              });
+              })
+                .then((response) => {
+                  return response.json();
+                })
+                .then((response) => {
+                  console.log(response);
+                });
             }}
           >
             🗑️
