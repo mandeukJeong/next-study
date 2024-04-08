@@ -13,6 +13,6 @@ export default async function handler(request, response) {
         },
       }
     );
-    response.status(200).redirect('/list');
+    return response.status(200).redirect('/list');
   }
 }
