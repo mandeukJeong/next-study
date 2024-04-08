@@ -1,14 +1,26 @@
 'use client';
-import { signIn } from 'next-auth/react';
+import { signIn, signOut } from 'next-auth/react';
 
-export default function LoginBtn() {
+export default function LoginBtn(props) {
   return (
-    <button
-      onClick={() => {
-        signIn();
-      }}
-    >
-      로그인
-    </button>
+    <>
+      {props.session ? (
+        <button
+          onClick={() => {
+            signOut();
+          }}
+        >
+          로그아웃
+        </button>
+      ) : (
+        <button
+          onClick={() => {
+            signIn();
+          }}
+        >
+          로그인
+        </button>
+      )}
+    </>
   );
 }

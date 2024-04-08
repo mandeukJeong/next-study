@@ -11,9 +11,6 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   let session = await getServerSession(authOptions);
-  if (session) {
-    console.log(session);
-  }
   return (
     <html lang="en">
       <body>
@@ -22,7 +19,7 @@ export default async function RootLayout({ children }) {
             Appleforum
           </Link>
           <Link href="/list">List</Link>
-          <LoginBtn />
+          <LoginBtn session={session} />
         </div>{' '}
         {children}
       </body>
