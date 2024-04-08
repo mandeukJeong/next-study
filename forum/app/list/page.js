@@ -1,6 +1,5 @@
 import { connectDB } from '@/util/database';
 import Link from 'next/link';
-import DetailLink from './DetailLink';
 
 export default async function List() {
   const db = (await connectDB).db('next');
@@ -13,7 +12,6 @@ export default async function List() {
           <Link href={`/detail/${item._id}`}>
             <h4>{item.title}</h4>
           </Link>
-          <DetailLink></DetailLink>
           <p>{item.content}</p>
         </div>
       ))}
