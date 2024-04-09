@@ -1,13 +1,31 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export default function Comment() {
+export default function Comment(props) {
   let [comment, setComment] = useState('');
+  let [commentList, setCommentList] = useState([]);
+
+  useEffect(() => {
+    fetch(`/api/comment/list/${props._id}`, {
+      method: 'GET',
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        setCommentList(response);
+      });
+  }, []);
 
   return (
     <div>
-      <div>댓글목록보여줄부분</div>
+      {commentList.map((item, index) => (
+        <div key={index}>
+          <p>{item.content}</p>
+        </div>
+      ))}
+      <div></div>
       <input
         onChange={(e) => {
           setComment(e.target.value);
@@ -15,10 +33,13 @@ export default function Comment() {
       />
       <button
         onClick={() => {
-          // fetch("/", {
-          //     method: 'POST',
-          //     body: comment
-          // })
+          fetch('/api/comment/new', {
+            method: 'POST',
+            body: JSON.stringify({
+              comment: comment,
+              _id: props._id,
+            }),
+          });
         }}
       >
         댓글 전송
