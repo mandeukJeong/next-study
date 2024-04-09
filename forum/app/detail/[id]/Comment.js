@@ -20,11 +20,13 @@ export default function Comment(props) {
 
   return (
     <div>
-      {commentList.map((item, index) => (
-        <div key={index}>
-          <p>{item.content}</p>
-        </div>
-      ))}
+      {commentList.length > 0
+        ? commentList.map((item, index) => (
+            <div key={index}>
+              <p>{item.content}</p>
+            </div>
+          ))
+        : '댓글 없음'}
       <div></div>
       <input
         onChange={(e) => {

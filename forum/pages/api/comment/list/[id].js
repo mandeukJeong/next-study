@@ -10,7 +10,6 @@ export default async function handler(request, response) {
         parent: new ObjectId(request.query.id),
       })
       .toArray();
-    console.log(result);
     return response.status(200).json(result);
   }
 }
