@@ -67,7 +67,7 @@ export const authOptions = {
       return session;
     },
   },
-  secret: process.env.SECRET_KEY,
+  secret: process.env.NEXTAUTH_SECRET,
   adapter: MongoDBAdapter(connectDB),
 };
 export default NextAuth(authOptions);
