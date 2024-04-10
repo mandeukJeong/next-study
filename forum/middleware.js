@@ -16,4 +16,17 @@ export async function middleware(request) {
     // console.log(request.headers.get('sec-ch-ua-platform'));
     return NextResponse.next();
   }
+
+  if (request.nextUrl.pathname.startsWith('/register')) {
+    if (request.cookies.has('visited')) {
+      return NextResponse.next();
+    } else {
+      const response = NextResponse.next();
+      response.cookies.set({
+        name: 'visited',
+        value: true,
+      });
+      return response;
+    }
+  }
 }
